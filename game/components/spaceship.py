@@ -13,53 +13,17 @@ class Spaceship(Sprite):
         self.rect.x = self.X_POS
         self.rect.y = self.Y_POS
 
-        self.moving_left = False
-        self.moving_right = False
-        self.moving_up = False
-        self.moving_down = False
+    def update(self, user_input):  
+               
+        self.moving_left = bool(user_input[pygame.K_LEFT])
 
-    def update(self, user_input):
-        if user_input[pygame.K_LEFT]:       
-            self.moving_left = True
-        else:
-            self.moving_left = False
+        self.moving_right = bool(user_input[pygame.K_RIGHT])
+        
+        self.moving_up = bool(user_input[pygame.K_UP])
 
-        if user_input[pygame.K_RIGHT]:
-            self.moving_right = True
-        else:
-            self.moving_right = False
-
-        if user_input[pygame.K_UP]:
-            self.moving_up = True
-        else:
-            self.moving_up = False
-
-        if user_input[pygame.K_DOWN]:
-            self.moving_down = True
-        else:
-            self.moving_down = False
-
+        self.moving_down = bool(user_input[pygame.K_DOWN])
+        
         self.move()
-
-    def move_left (self):
-        if self.rect.left > 0:
-            self.rect.x -= 10
-        elif self.rect.left <= 0:
-            self.rect.x = SCREEN_WIDTH - self.rect.width
-
-    def move_right(self):
-        if self.rect.right < SCREEN_WIDTH:
-            self.rect.x += 10
-        elif self.rect.right >= SCREEN_WIDTH:
-            self.rect.x = 0
-
-    def move_dowm(self):
-        if self.rect.bottom < SCREEN_HEIGHT:
-            self.rect.y += 10
-
-    def move_up(self):
-        if self.rect.top > SCREEN_HEIGHT // 2:
-            self.rect.y -= 10
 
     def move(self):
         if self.moving_left and self.rect.left > 0:
