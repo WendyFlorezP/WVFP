@@ -1,9 +1,8 @@
 import pygame
-from game.components.enemis.enemy import Enemy
 from game.components.enemis.enemy_manager import EnemyManager
 
 from game.components.spaceship import Spaceship
-from game.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, SPACESHIP, SPACESHIP_SHIELD, TITLE, FPS, DEFAULT_TYPE
+from game.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS
 
 
 class Game:
@@ -19,6 +18,9 @@ class Game:
         self.y_pos_bg = 0
         self.player = Spaceship()
         self.enemy_Manager = EnemyManager()
+        self.enemy_Manager.update()
+
+
 
     def run(self):
         # Game loop: events - update - draw
