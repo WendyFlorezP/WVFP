@@ -13,7 +13,7 @@ class Spaceship(Sprite):
         self.rect.x = self.X_POS
         self.rect.y = self.Y_POS
 
-    def update(self, user_input):  
+    def update(self, user_input):
                
         self.moving_left = bool(user_input[pygame.K_LEFT])
 
@@ -42,3 +42,4 @@ class Spaceship(Sprite):
 
     def draw(self, screen):
         screen.blit(self.image, (self.rect.x, self.rect.y))
+   
