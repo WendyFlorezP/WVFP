@@ -17,18 +17,26 @@ BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/Track.png'))
 
 HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))
 
-YOU_WIN =pygame.image.load(os.path.join(IMG_DIR, "other/YOUWIN.png"))
+YOU_WIN =pygame.image.load(os.path.join(IMG_DIR, "Other/YOUWIN.png"))
 
 DEFAULT_TYPE = "default"
 SHIELD_TYPE = 'shield'
 ENEMY_TYPE = "enemy"
+PLAYER_TYPE = "player"
+
 
 SPACESHIP = pygame.image.load(os.path.join(IMG_DIR, "Spaceship/spaceship.png"))
 SPACESHIP_SHIELD = pygame.image.load(os.path.join(IMG_DIR, "Spaceship/spaceship_shield.png"))
 BULLET = pygame.image.load(os.path.join(IMG_DIR, "Bullet/bullet_1.png"))
+BULLET_IMAGE = pygame.image.load(os.path.join(IMG_DIR, "Bullet/bullet_4.png"))
+BULLET_PLAYER = pygame.image.load(os.path.join(IMG_DIR, "Bullet/bullet_4.png"))
 
+BULLET_PLAYER = pygame.image.load(os.path.join(IMG_DIR, "Bullet/bullet_4.png"))
 BULLET_ENEMY = pygame.image.load(os.path.join(IMG_DIR, "Bullet/bullet_2.png"))
 ENEMY_1 = pygame.image.load(os.path.join(IMG_DIR, "Enemy/enemy_1.png"))
 ENEMY_2 = pygame.image.load(os.path.join(IMG_DIR, "Enemy/enemy_2.png"))
+BULLET_IMAGE = pygame.image.load(os.path.join(IMG_DIR, "Bullet/bullet_4.png"))
+
+
 
 FONT_STYLE = 'freesansbold.ttf'
