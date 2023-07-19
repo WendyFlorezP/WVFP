@@ -1,36 +1,40 @@
 import pygame
-from game.components import spaceship
 from game.components.bullets.bullet import Bullet
-from game.utils.constants import ENEMY_TYPE
-
+from game.utils.constants import ENEMY_TYPE, PLAYER_TYPE
+from game.components.bullets.player_bullet import Player_Bullet
 
 class BulletManager:
     def __init__(self):
         self.enemy_bullets = []
-        self.bullets = []
+        self.Player_Bullet = []
 
     def update(self, game):
         for enemy_bullet in self.enemy_bullets:
             enemy_bullet.update(self.enemy_bullets)
             if enemy_bullet.rect.colliderect(game.player.rect):
                 self.enemy_bullets.remove(enemy_bullet)
+                game.score += 1
+
                 game.playing = False
+                game.death_count += 1
+                print(game.death_count)
                 pygame.time.delay(1000)
                 break
-            for bullet in self.bullets:
-                bullet.update(self.bullets)
+        for player_bullet in self.Player_Bullet:
+            player_bullet.update(self.Player_Bullet)
 
     def draw(self,screen):
         for enemy_bullet in self.enemy_bullets:
             enemy_bullet.draw(screen)
-        for bullet in self.bullets:
-            bullet.draw(screen)
+        for player_bullet in self.Player_Bullet:
+            player_bullet.draw(screen)
 
-    def add_bullet(self,x, y):
+    def add_bullet(self, spaceship):
         if spaceship.type == ENEMY_TYPE and not self.enemy_bullets:
             self.enemy_bullets.append(Bullet(spaceship))
-            new_bullet = Bullet(spaceship, x, y)
-            self.bullets.append(new_bullet)
+        elif spaceship.type == PLAYER_TYPE:
+            self.Player_Bullet.append(Player_Bullet(spaceship))
 
-    
-    
+    def reset(self):
+        self.enemies = []
+

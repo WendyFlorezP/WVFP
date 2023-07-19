@@ -1,4 +1,5 @@
-from game.components.enemis.enemy import Enemy, Enemy2
+from game.components.enemis.enemy import Enemy
+from game.components.enemis.enemy2 import Enemy2
 import random
 
 class EnemyManager:
@@ -17,3 +18,6 @@ class EnemyManager:
     def draw(self, screen):
         for enemy in self.enemies:
             enemy.draw(screen)
+
+    def reset(self):
+         self.enemies = []
