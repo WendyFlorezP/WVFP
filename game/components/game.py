@@ -61,11 +61,9 @@ class Game:
     def show_menu(self):
          if self.death_count > 0:
             self.menu.update_message(f"You died. Press any key to start again.../(.,-,.)/{self.death_count}")
-            self.menu.update_message(f"Your score is : {self.score}")
          if self.score > self.max_score:
              self.max_score = 0
              self.max_score += self.score
-             self.menu.update_message(f"your highest score is: {self.max_score}")
          else:
             self.menu.update_message("Press any key to start...┐(.-.)┌")
          self.menu.draw(self.screen)
@@ -136,8 +134,9 @@ class Game:
         text_rect.center = (1000, 50)
         self.screen.blit(text, text_rect)
 
-    def player_death(self, score):
-        if score > self.highest_score:
-            self.highest_score = score
-            self.death_count += 1
+    def player_death(self):
+        if self.score > self.highest_score:
+            self.highest_score = self.score
+        self.death_count += 1
         
+
