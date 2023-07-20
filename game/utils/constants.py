@@ -23,7 +23,9 @@ DEFAULT_TYPE = "default"
 SHIELD_TYPE = 'shield'
 ENEMY_TYPE = "enemy"
 PLAYER_TYPE = "player"
-
+SPACESHIP_WIDTH = 60
+SPACESHIP_HEIGHT = 60
+HEART_TYPE = "heart"
 
 SPACESHIP = pygame.image.load(os.path.join(IMG_DIR, "Spaceship/spaceship.png"))
 SPACESHIP_SHIELD = pygame.image.load(os.path.join(IMG_DIR, "Spaceship/spaceship_shield.png"))
@@ -33,10 +35,8 @@ BULLET_IMAGE = pygame.image.load(os.path.join(IMG_DIR, "Bullet/bullet_5.png"))
 
 BULLET_PLAYER = pygame.image.load(os.path.join(IMG_DIR, "Bullet/bullet_5.png"))
 BULLET_ENEMY = pygame.image.load(os.path.join(IMG_DIR, "Bullet/bullet_2.png"))
-ENEMY_1 = pygame.image.load(os.path.join(IMG_DIR, "Enemy/enemy_4.png"))
-ENEMY_2 = pygame.image.load(os.path.join(IMG_DIR, "Enemy/enemy_2.png"))
+ENEMY_1 = pygame.image.load(os.path.join(IMG_DIR, "Enemy/enemy_7.png"))
+ENEMY_2 = pygame.image.load(os.path.join(IMG_DIR, "Enemy/enemy_8.png"))
 
 
-
-
-FONT_STYLE = 'freesansbold.ttf'
+FONT_STYLE = 'game/assets/Other/amatic.zip'

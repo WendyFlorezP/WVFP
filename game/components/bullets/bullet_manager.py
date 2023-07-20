@@ -16,7 +16,8 @@ class BulletManager:
             if bullet.rect.colliderect(enemy.rect):
                 game.enemy_manager.enemies.remove(enemy)
                 self.Player_Bullet.remove(bullet)
-                game.score += 1
+                game.score.update()
+ 
 
      for enemy_bullet in self.enemy_bullets:
          enemy_bullet.update(self.enemy_bullets)
@@ -24,6 +25,7 @@ class BulletManager:
             self.enemy_bullets.remove(enemy_bullet)
             if game.player.power_up_type != SHIELD_TYPE:
              game.playing = False
+             game.death_count.update()
              print(game.death_count)
              pygame.time.delay(1000)
              break
@@ -47,4 +49,5 @@ class BulletManager:
 
     def reset(self):
         self.enemies = []
+        self.enemy_bullets = []
 
