@@ -1,7 +1,7 @@
 import pygame
 from pygame.sprite import Sprite 
 
-from game.utils.constants import PLAYER_TYPE, SCREEN_HEIGHT, SPACESHIP, SCREEN_WIDTH
+from game.utils.constants import DEFAULT_TYPE, PLAYER_TYPE, SCREEN_HEIGHT, SPACESHIP, SCREEN_WIDTH
 
 
 class Spaceship(Sprite):
@@ -12,8 +12,8 @@ class Spaceship(Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = self.X_POS
         self.rect.y = self.Y_POS
-        self.bullet_manager = bullet_manager
-        self.type = PLAYER_TYPE 
+        self.power_up_time = DEFAULT_TYPE
+        self.power_up_time = 0
 
     def update(self, user_input, bullet_manager):
 
@@ -48,4 +48,14 @@ class Spaceship(Sprite):
         screen.blit(self.image, (self.rect.x, self.rect.y))
     def shoot(self, bullet_manager):
         bullet_manager.add_bullet(self)
+
+
+    def on_pick_power_up(self, time_up, type, image)
+        self.iamge = pygame.transform.scale(image, (self.SPACESHIP_WIDTH, self.SPACESHIP_HEIGHT))
+        self.power_up_time = time_up
+        self.power_up_time = type
+
+    def draw_power_up(self, screen):
+        if self.power_up_type != DEFAULT_TYPE:
+            time_left = self.power_up_time_up - pygame.time.get_ticks()    
    

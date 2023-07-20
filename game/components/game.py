@@ -5,7 +5,7 @@ from game.components.enemis.enemy_manager import EnemyManager
 from game.components.bullets.bullet_manager import BulletManager
 from game.components.spaceship import Spaceship
 from game.utils.constants import BG, FONT_STYLE, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS
-
+from game.components.power_ups.power_up_manager import PowerUpManager
 
 class Game:
     def __init__(self):
@@ -25,6 +25,7 @@ class Game:
         self.highest_score = 0
         self.enemy_manager = EnemyManager()
         self.bullet_manager = BulletManager()
+        self.power_up_manager = PowerUpManager()
         bullet_manager = BulletManager()  
         self.player = Spaceship(bullet_manager)
 
@@ -59,16 +60,30 @@ class Game:
         self.max_score = self.highest_score
 
     def show_menu(self):
+         half_screen_width = SCREEN_WIDTH // 2
          if self.death_count > 0:
-            self.menu.update_message(f"You died. Press any key to start again.../(.,-,.)/{self.death_count}")
-         if self.score > self.max_score:
-             self.max_score = 0
-             self.max_score += self.score
+            self.menu.reset_screen_color(self.screen)
+            self.menu.draw(self.screen, "Press any key to start...┐(.-.)┌")
          else:
-            self.menu.update_message("Press any key to start...┐(.-.)┌")
-         self.menu.draw(self.screen)
-         self.menu.events(self.on_close, self.play)
+            self.menu.reset_screen_color(self.screen)
+            self.menu.draw(self.screen, "You died. Press any key to start again.../(.,-,.)/")
+            font = pygame.font.Font(FONT_STYLE, 18)
+            score_text = font.render(f"Your score: {self.score}", True, (255, 255, 255))
+            self.screen.blit(score_text, (half_screen_width, 350))
+            highest_score_text = font.render(f"Highest score: {self.highest_score}", True, (255, 255, 255))
+            self.screen.blit(highest_score_text, (half_screen_width, 400))
+            death_count_text = font.render(f"Total deaths: {self.death_count}", True, (255, 255, 255))
+            self.screen.blit(death_count_text, (half_screen_width, 450))
+            self.menu.draw(self.screen)
+            self.menu.events(self.on_close, self.play)
+            pygame.display.flip()
+            
+    def update_highest_score(self):
+        if self.score.count > self.highest_score.count:
+            self.highest_score.update(self.score.count)
+        
 
+    
     def on_close(self):
         self.playing = False
         self.running = False
@@ -90,6 +105,7 @@ class Game:
         self.player.update(user_input ,self.bullet_manager) 
         self.enemy_manager.update(self)
         self.bullet_manager.update(self)
+        self.power_up_manager.update(self)
 
     def draw_game_info(self):
         font = pygame.font.Font(FONT_STYLE, 18)
@@ -103,6 +119,10 @@ class Game:
         highest_score_surface = font.render(f"Highest Score Achieved: {self.max_score}", True, (255, 255, 255))
         self.screen.blit(highest_score_surface, (10, SCREEN_HEIGHT - 20))
 
+        result_surface = font.render(f"Score: {self.score}  Deaths: {self.death_count}  Highest Score: {self.max_score}", True, (255, 255, 255))
+        self.screen.blit(result_surface, (10, SCREEN_HEIGHT - 80))
+
+
 
     def draw(self):
         self.clock.tick(FPS)
@@ -111,6 +131,7 @@ class Game:
         self.player.draw(self.screen) 
         self.enemy_manager.draw(self.screen)
         self.bullet_manager.draw(self.screen)
+        self.power_up_manager.draw(self.screen)
         self.draw_score()
         self.draw_game_info()
         pygame.display.update()
@@ -138,5 +159,11 @@ class Game:
         if self.score > self.highest_score:
             self.highest_score = self.score
         self.death_count += 1
-        
+
+    def reset(self):
+        self.bullet_manager.reset()
+        self.enemy_manager.reset()
+        self.power_up_manager.reset()
+        self.score.reset()
+        self.player.reset()        
 

@@ -1,3 +1,4 @@
+
 import pygame
 
 from game.utils.constants import FONT_STYLE, ICON, SCREEN_HEIGHT, SCREEN_WIDTH
@@ -22,14 +23,19 @@ class Menu:
                  # if event.key == pygame.K_RETURN:
                      on_start()
 
+    def reset_screen_color(self, screen):
+         screen.fill((225, 225, 225))
                   
 
-    def draw(self, screen):
+    def draw(self, screen, message, X=HALF_SCREEN_WIDTH, Y=HALF_SCREEN_HEIGHT, color=(0, 0, 0)):
+        text = self.font.render(message, True, color)
+        text_rect = text.get_rect()
+        text_rect.center = (X, Y)
         screen.fill((225, 225, 255))
         screen.blit(self.text, self.text_rect)
-        screen.blit(self.icon, self.icon_rect)
-        pygame.display.flip()
 
+    def draw_icon(self, screen):
+         screen.blit(self.icon, self.icon_rect)
     
 
     def update_message(self, message):
