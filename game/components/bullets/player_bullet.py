@@ -5,7 +5,7 @@ from game.utils.constants import BULLET_PLAYER, PLAYER_TYPE
 
 
 class Player_Bullet(Sprite):
-    SPEED = 20
+    SPEED = 30
     BULLETS = { PLAYER_TYPE: BULLET_PLAYER }
 
     def __init__(self, spaceship):

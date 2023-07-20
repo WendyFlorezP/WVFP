@@ -1,3 +1,4 @@
+
 from game.components.enemis.enemy import Enemy
 from game.components.enemis.enemy2 import Enemy2
 import random
@@ -6,6 +7,8 @@ class EnemyManager:
     def __init__(self):
         self.enemies = []
         self.enemy2_spawned = False
+
+
 
     def update(self, game):
         if not self.enemies:

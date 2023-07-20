@@ -5,7 +5,7 @@ from game.components.bullets.bullet_manager import BulletManager
 from game.components.enemis.enemy_manager import EnemyManager
 from game.components.bullets.bullet_manager import BulletManager
 from game.components.spaceship import Spaceship
-from game.utils.constants import BG, FONT_STYLE, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS
+from game.utils.constants import BG, FONT_STYLE, HEART, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS
 from game.components.power_ups.power_up_manager import PowerUpManager
 
 
@@ -31,6 +31,7 @@ class Game:
         self.bullet_manager = BulletManager()
         self.power_up_manager = PowerUpManager()
         self.bullet_manager = BulletManager()
+        self.speed = 5 
 
 
 
@@ -50,7 +51,10 @@ class Game:
             
         pygame.display.quit()
         pygame.quit()
-       
+        
+    def increase_speed(self):
+        self.speed += 3 
+        
     def play(self):
         self.playing = True
         self.enemy_manager.reset()

@@ -14,6 +14,7 @@ class PowerUpManager:
             self.when_appears += random.randint(10000, 15000)
             self.power_ups.append(Shield())
             self.power_ups.append(Lives())
+  
 
 
     def update(self, game):
@@ -23,7 +24,7 @@ class PowerUpManager:
             if power_up.rect.colliderect(game.player.rect):
                 start_time = pygame.time.get_ticks()
                 duration = random.randint(3, 5)
-                power_up_time_up = start_time + (duration * 2000)
+                power_up_time_up = start_time + (duration * 3000)
                 game.player.on_pick_power_up(power_up_time_up, power_up.type, power_up.spaceship_image)
                 self.power_ups.remove(power_up)
 
